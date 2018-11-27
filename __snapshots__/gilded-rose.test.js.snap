@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gilded Rose should update quality of  items 1`] = `
+Array [
+  Item {
+    "name": "foo",
+    "quality": 2,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "foo",
+    "quality": 1,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 4,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 5,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 5,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 6,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 3,
+    "sellIn": 10,
+  },
+]
+`;
+
+exports[`Gilded Rose should update quality of items 1`] = `
+Array [
+  Item {
+    "name": "foo",
+    "quality": 2,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "foo",
+    "quality": 1,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 4,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 5,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 5,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 6,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 3,
+    "sellIn": 10,
+  },
+]
+`;
+
+exports[`Gilded Rose should update quality of normal items 1`] = `
+Array [
+  Item {
+    "name": "foo",
+    "quality": 2,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "foo",
+    "quality": 1,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 4,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 5,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 5,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 6,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 3,
+    "sellIn": 10,
+  },
+]
+`;

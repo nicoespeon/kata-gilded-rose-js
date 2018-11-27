@@ -1,3 +1,6 @@
+const MIN_QUALITY = 0;
+const MAX_QUALITY = 50;
+
 export class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
@@ -6,66 +9,125 @@ export class Item {
   }
 }
 
-export class Shop {
+export class NormalItem extends Item {
+  constructor(sellIn, quality) {
+    super("normal", sellIn, quality);
+  }
+
+  updateQuality() {
+    this.lowerQuality();
+    this.lowerSellIn();
+    if (this.isSellDatePassed()) this.lowerQuality();
+
+    return this;
+  }
+
+  lowerQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality = this.quality - 1;
+    }
+  }
+
+  lowerSellIn() {
+    this.sellIn = this.sellIn - 1;
+  }
+
+  isSellDatePassed() {
+    return this.sellIn < 0;
+  }
+}
+
+export class SulfurasItem extends Item {
+  constructor(sellIn, quality) {
+    super("Sulfuras, Hand of Ragnaros", sellIn, quality);
+  }
+
+  updateQuality() {
+    return this;
+  }
+}
+
+export class BackstagePassItem extends Item {
+  constructor(sellIn, quality) {
+    super("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+  }
+
+  updateQuality() {
+    this.increaseQuality();
+    if (this.sellIn < 11) this.increaseQuality();
+    if (this.sellIn < 6) this.increaseQuality();
+    this.lowerSellIn();
+    if (this.isSellDatePassed()) this.setQualityTo0();
+
+    return this;
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality = this.quality + 1;
+    }
+  }
+
+  lowerSellIn() {
+    this.sellIn = this.sellIn - 1;
+  }
+
+  setQualityTo0() {
+    this.quality = 0;
+  }
+
+  isSellDatePassed() {
+    return this.sellIn < 0;
+  }
+}
+
+export class AgedBrieItem extends Item {
+  constructor(sellIn, quality) {
+    super("Aged Brie", sellIn, quality);
+  }
+
+  updateQuality() {
+    this.increaseQuality();
+    this.lowerSellIn();
+    if (this.isSellDatePassed()) this.increaseQuality();
+
+    return this;
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality = this.quality + 1;
+    }
+  }
+
+  lowerSellIn() {
+    this.sellIn = this.sellIn - 1;
+  }
+
+  isSellDatePassed() {
+    return this.sellIn < 0;
+  }
+}
+
+export class ConjuredItem extends NormalItem {
+  constructor(sellIn, quality) {
+    super(sellIn, quality);
+    this.name = "Conjured";
+  }
+
+  lowerQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality = this.quality - 2;
+    }
+  }
+}
+
+export class GildedRose {
   constructor(items = []) {
     this.items = items;
   }
 
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (
-        this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-      ) {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != "Aged Brie") {
-          if (
-            this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
-    }
-
-    return this.items;
+    return this.items.map(item => item.updateQuality());
   }
 }
