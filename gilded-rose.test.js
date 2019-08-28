@@ -264,6 +264,64 @@ describe("Gilded Rose", () => {
       expect(updatedItem.quality).toBe(50);
     });
   });
+
+  describe.skip("conjured", () => {
+    it("should decrease quality by 2 before sell date", () => {
+      const item = new Item("Conjured", 10, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.quality).toBe(7);
+    });
+
+    it("should decrease sellIn by 1 before sell date", () => {
+      const item = new Item("Conjured", 10, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.sellIn).toBe(9);
+    });
+
+    it("should decrease quality by 4 on sell date", () => {
+      const item = new Item("Conjured", 0, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.quality).toBe(5);
+    });
+
+    it("should decrease sellIn by 1 on sell date", () => {
+      const item = new Item("Conjured", 0, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.sellIn).toBe(-1);
+    });
+
+    it("should decrease quality by 4 after sell date", () => {
+      const item = new Item("Conjured", -3, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.quality).toBe(5);
+    });
+
+    it("should decrease sellIn by 1 after sell date", () => {
+      const item = new Item("Conjured", -3, 9);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.sellIn).toBe(-4);
+    });
+
+    it("should not decrease quality below 0", () => {
+      const item = new Item("Conjured", 10, 0);
+
+      const updatedItem = runUpdateQualityOn(item);
+
+      expect(updatedItem.quality).toBe(0);
+    });
+  });
 });
 
 function runUpdateQualityOn(item) {
