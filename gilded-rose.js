@@ -64,6 +64,16 @@ export class Shop {
           }
         }
       }
+
+      if (this.items[i].name == "Conjured") {
+        if(this.items[i].quality > 0) {
+          this.items[i].quality -= 1;
+        }
+
+        if(this.items[i].sellIn < 0) {
+          this.items[i].quality -= 1;
+        }
+      }
     }
 
     return this.items;
