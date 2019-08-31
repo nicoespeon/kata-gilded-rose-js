@@ -73,11 +73,19 @@ class Normal extends BaseItem {
   }
 }
 
+class Conjured extends Normal {
+  decreaseQuality() {
+    super.decreaseQuality();
+    super.decreaseQuality();
+  }
+}
+
 const DEFAULT_CLASS = Normal;
 const SPECIALIZED_CLASSES = {
   "Aged Brie": AgedBrie,
   "Backstage passes to a TAFKAL80ETC concert": BackstagePass,
-  "Sulfuras, Hand of Ragnaros": BaseItem
+  "Sulfuras, Hand of Ragnaros": BaseItem,
+  "Conjured": Conjured
 };
 
 export class Shop {
